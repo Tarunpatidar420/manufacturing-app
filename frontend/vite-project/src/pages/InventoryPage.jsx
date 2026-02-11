@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import ApiClient from "../api/ApiClient";
 import { Button, Card, Input } from "../components/Ui";
 
-// ✅ DUMMY DATA (Testing only) - backend connect hone ke baad remove kar dena
+//  DUMMY DATA (Testing only) removable
 const dummyInventory = [
   { id: 1, item_name: "Steel", stock_qty: 20, min_threshold: 30 },
   { id: 2, item_name: "Bolts", stock_qty: 120, min_threshold: 50 },
@@ -19,7 +19,7 @@ export default function InventoryPage() {
   const [stockQty, setStockQty] = useState(0);
   const [minThreshold, setMinThreshold] = useState(0);
 
-  // ✅ per-row edit state (Update button ke liye)
+  // per-row edit state (Update button ke liye)
   const [editMap, setEditMap] = useState({}); // { [id]: { stock_qty, min_threshold } }
 
   const loadInventory = async () => {
@@ -28,7 +28,7 @@ export default function InventoryPage() {
       const res = await ApiClient.get("/inventory");
       setItems(res.data);
 
-      // ✅ keep editMap in sync
+      //  keep editMap in sync
       const next = {};
       (res.data || []).forEach((it) => {
         next[it.id] = { stock_qty: it.stock_qty, min_threshold: it.min_threshold };
@@ -37,7 +37,7 @@ export default function InventoryPage() {
     } catch {
       setErr("Failed to load inventory (check Flask API). Showing dummy data for testing.");
 
-      // ✅ DUMMY (Testing only)
+      //  DUMMY (Testing only)
       setItems(dummyInventory);
 
       const next = {};
@@ -70,7 +70,7 @@ export default function InventoryPage() {
     } catch {
       setErr("Create inventory item failed. Backend needs POST /api/inventory.");
 
-      // ✅ DUMMY (Testing only): locally add
+      //  DUMMY (Testing only): locally add
       const newLocal = {
         id: Date.now(),
         item_name: itemName || "New Item",
@@ -99,7 +99,7 @@ export default function InventoryPage() {
     } catch {
       setErr("Update failed (backend). Updated locally for testing.");
 
-      // ✅ DUMMY (Testing only): update locally
+      //  DUMMY (Testing only): update locally
       setItems((prev) => prev.map((it) => (it.id === id ? { ...it, ...payload } : it)));
     }
   };
@@ -113,7 +113,7 @@ export default function InventoryPage() {
     } catch {
       setErr("Delete failed (backend). Deleted locally for testing.");
 
-      // ✅ DUMMY (Testing only)
+      //  DUMMY (Testing only)
       setItems((prev) => prev.filter((it) => it.id !== id));
       setEditMap((prev) => {
         const copy = { ...prev };
@@ -239,11 +239,7 @@ export default function InventoryPage() {
           </table>
         </div>
 
-        {/* ✅ After backend ready, remove:
-            - dummyInventory
-            - loadInventory catch me dummy set
-            - create/update/delete catch me local updates (optional)
-        */}
+       
       </Card>
     </div>
   );

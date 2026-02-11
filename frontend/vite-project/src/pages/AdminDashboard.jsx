@@ -5,7 +5,7 @@ import InfoCard from "../components/InfoCard.jsx";
 import LoadingText from "../components/LoadingText.jsx";
 import Badge from "../components/Badge.jsx";
 
-// ✅ DUMMY (Testing only)
+//  DUMMY (Testing only)
 const dummyInventory = [
   { id: 1, item_name: "Steel", stock_qty: 20, min_threshold: 30 },
   { id: 2, item_name: "Bolts", stock_qty: 120, min_threshold: 50 },
@@ -24,7 +24,7 @@ export default function AdminDashboard() {
     const load = async () => {
       setErr("");
 
-      // ✅ health (never throw)
+      //  health (never throw)
       const [h, r] = await Promise.allSettled([
         ApiClient.get("/healthz"),
         ApiClient.get("/readyz"),
@@ -36,7 +36,7 @@ export default function AdminDashboard() {
       };
       setHealth(nextHealth);
 
-      // ✅ summary + inventory (never throw)
+      //  summary + inventory (never throw)
       const [s, inv] = await Promise.allSettled([
         ApiClient.get("/summary"),
         ApiClient.get("/inventory"),

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import ApiClient from "../api/ApiClient";
 import { Button, Card, Input } from "../components/Ui";
 
-// ✅ DUMMY DATA (Testing only) - backend connect hone ke baad remove kar dena
+//  DUMMY DATA (Testing only) -removable
 const dummyOrders = [
   { id: 1, product_name: "Gear", quantity: 10, status: "PENDING" },
   { id: 2, product_name: "Bolt Pack", quantity: 5, status: "COMPLETED" },
@@ -30,7 +30,7 @@ export default function OrdersPage() {
       setOrders(res.data);
     } catch {
       setErr("Failed to load orders (check Flask API). Showing dummy data for testing.");
-      // ✅ DUMMY (Testing only)
+      //  DUMMY (Testing only)
       setOrders(dummyOrders);
     }
   };
@@ -55,7 +55,7 @@ export default function OrdersPage() {
     } catch {
       setErr("Failed to create order. Added locally for testing.");
 
-      // ✅ DUMMY (Testing only): local add
+      //  DUMMY (Testing only): local add
       const newLocal = {
         id: Date.now(),
         product_name: productName || "New Order",
@@ -92,7 +92,7 @@ export default function OrdersPage() {
     } catch {
       setErr("Failed to update order (backend). Updated locally for testing.");
 
-      // ✅ DUMMY (Testing only): local update
+      //  DUMMY (Testing only): local update
       setOrders((prev) =>
         prev.map((o) =>
           o.id === editingId
@@ -113,7 +113,7 @@ export default function OrdersPage() {
     } catch {
       setErr("Delete failed (backend). Deleted locally for testing.");
 
-      // ✅ DUMMY (Testing only)
+      //  DUMMY (Testing only)
       setOrders((prev) => prev.filter((o) => o.id !== id));
     }
   };
@@ -233,10 +233,7 @@ export default function OrdersPage() {
           </table>
         </div>
 
-        {/* ✅ After backend ready, remove:
-            - dummyOrders
-            - catch me local add/update/delete (optional)
-        */}
+        
       </Card>
     </div>
   );

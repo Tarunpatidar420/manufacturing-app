@@ -5,11 +5,6 @@ import InfoCard from "../components/InfoCard.jsx";
 import LoadingText from "../components/LoadingText.jsx";
 import Badge from "../components/Badge.jsx";
 
-/**
- * ✅ DUMMY DATA (Testing only)
- * - Backend down ho to UI ko test karne ke liye use hota hai.
- * - Later tum easily delete kar sakte ho.
- */
 
 // Inventory dummy
 const dummyInventory = [
@@ -28,7 +23,7 @@ const dummyOrders = [
   { id: 4, product_name: "Wire Roll", quantity: 2, status: "Completed" },
 ];
 
-// ✅ DUMMY summary calculate function (dynamic, always correct)
+//  DUMMY summary calculate function (dynamic, always correct)
 const makeDummySummary = () => {
   const totalOrders = dummyOrders.length;
   const pendingOrders = dummyOrders.filter((o) => o.status === "Pending").length;
@@ -55,7 +50,7 @@ export default function UserDashboard() {
     const load = async () => {
       setErr("");
 
-      // ✅ We try to load from backend
+      //  We try to load from backend
       const [s, inv] = await Promise.allSettled([
         ApiClient.get("/summary"),
         ApiClient.get("/inventory"),
@@ -146,7 +141,7 @@ export default function UserDashboard() {
         </div>
       </div>
 
-      {/* ✅ DUMMY SECTION INFO (Testing only) */}
+      {/*  DUMMY SECTION INFO (Testing only) */}
       {err ? (
         <p className="text-xs text-slate-400">
           NOTE: Dummy summary is computed from dummyOrders + dummyInventory. Remove this later when backend is ready.
